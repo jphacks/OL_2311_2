@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "Chillax";
   src: url(./assets/fonts/Chillax-Semibold.otf);
