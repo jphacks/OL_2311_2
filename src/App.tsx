@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { User } from "./types/user";
 import { Cheer } from "./types/cheer";
 import CheersPair from "./components/KanpaiPair";
+import { useSpring, animated } from "react-spring";
 
 function App() {
   const [users, setUsers] = useState<User[]>();
@@ -13,6 +14,11 @@ function App() {
   const [toUser, setToUser] = useState<User>();
   const [latestCheers, setLatestCheers] = useState<Cheer>();
   const [totalCheersCount, setTotalCheersCount] = useState<number>(0);
+  const [kanpaiVisible, setKanpaiVisible] = useState<boolean>(false);
+  const KanpaiProps = useSpring({
+    opacity: kanpaiVisible ? 1 : 0,
+    config: { duration: 300 },
+  });
 
   useEffect(() => {
     const usersCollectionRef = collection(db, "users");
@@ -35,11 +41,22 @@ function App() {
         }
       });
       setTotalCheersCount(querySnapshot.size);
-      setFromUser(users?.find((user) => user.id === latestCheers?.fromUserId));
-      setToUser(users?.find((user) => user.id === latestCheers?.toUserId));
     });
     return unsubscribe;
-  }, [latestCheers?.fromUserId, latestCheers?.toUserId, users]);
+  }, []);
+
+  useEffect(() => {
+    const newFromUser = users?.find(
+      (user) => user.id === latestCheers?.fromUserId
+    );
+    const newToUser = users?.find((user) => user.id === latestCheers?.toUserId);
+    setFromUser(newFromUser);
+    setToUser(newToUser);
+    setKanpaiVisible(!!(newFromUser && newToUser));
+    setTimeout(() => {
+      setKanpaiVisible(false);
+    }, 5000);
+  }, [latestCheers, users]);
 
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-[url('./assets/confetti.png')] bg-[#1637FC] bg-contain bg-no-repeat bg-center relative">
@@ -52,40 +69,50 @@ function App() {
       </div>
       {fromUser && toUser && (
         <div>
-          <CheersPair
-            fromUser={fromUser}
-            toUser={toUser}
-            position={{ top: "-10%", left: "5%" }}
-            rotate="25deg"
-          />
-          <CheersPair
-            fromUser={fromUser}
-            toUser={toUser}
-            position={{ top: "5%", right: "5%" }}
-            rotate="-34deg"
-            scale={0.9}
-          />
-          <CheersPair
-            fromUser={fromUser}
-            toUser={toUser}
-            position={{ bottom: "15%", left: "12%" }}
-            rotate="-8deg"
-            scale={0.8}
-          />
-          <CheersPair
-            fromUser={fromUser}
-            toUser={toUser}
-            position={{ bottom: "5%", right: "20%" }}
-            rotate="30deg"
-            scale={0.7}
-          />
-          <CheersPair
-            fromUser={fromUser}
-            toUser={toUser}
-            position={{ bottom: "15%", right: "2%" }}
-            rotate="-30deg"
-            scale={0.5}
-          />
+          <animated.div style={KanpaiProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ top: "-10%", left: "5%" }}
+              rotate="25deg"
+            />
+          </animated.div>
+          <animated.div style={KanpaiProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ top: "5%", right: "5%" }}
+              rotate="-34deg"
+              scale={0.9}
+            />
+          </animated.div>
+          <animated.div style={KanpaiProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ bottom: "15%", left: "12%" }}
+              rotate="-8deg"
+              scale={0.8}
+            />
+          </animated.div>
+          <animated.div style={KanpaiProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ bottom: "5%", right: "20%" }}
+              rotate="30deg"
+              scale={0.7}
+            />
+          </animated.div>
+          <animated.div style={KanpaiProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ bottom: "15%", right: "2%" }}
+              rotate="-30deg"
+              scale={0.5}
+            />
+          </animated.div>
         </div>
       )}
     </div>
