@@ -62,9 +62,9 @@ function App() {
     <div className="w-screen h-screen flex justify-center items-center bg-[url('./assets/confetti.png')] bg-[#1637FC] bg-contain bg-no-repeat bg-center relative">
       <div className="flex text-white justify-center items-center flex-col">
         <h1 className="text-[40px] font-semibold">会場の総乾杯数</h1>
-        <p className="font-[Chillax] text-[250px] leading-none">
-          {totalCheersCount / 2}
-        </p>
+        <animated.p className="font-[Chillax] text-[250px] leading-none">
+          {Math.floor(totalCheersCount / 2)}
+        </animated.p>
         <img src={LogoImage} alt="Kanpai!" />
       </div>
       {fromUser && toUser && (
