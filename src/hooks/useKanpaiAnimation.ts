@@ -5,34 +5,33 @@ import {
   rewardLeftAngle,
   rewardRightAngle,
 } from "../constants/reward";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useSpring } from "react-spring";
 
 export const useKanpaiAnimation = () => {
-  const { reward: rewardEmojiL } = useReward("rewardEmojiL", "emoji", {
+  const { reward: rewardEmojiL } = useReward("rewardL", "emoji", {
     ...rewardEmojiConfig,
     angle: rewardLeftAngle,
   });
-  const { reward: rewardConfettiL } = useReward("rewardEmojiL", "confetti", {
+  const { reward: rewardConfettiL } = useReward("rewardL", "confetti", {
     ...rewardConfettiConfig,
     angle: rewardLeftAngle,
   });
-  const { reward: rewardEmojiR } = useReward("rewardEmojiR", "emoji", {
+  const { reward: rewardEmojiR } = useReward("rewardR", "emoji", {
     ...rewardEmojiConfig,
     angle: rewardRightAngle,
-    emoji: ["🍺", "🍻"],
   });
-  const { reward: rewardConfettiR } = useReward("rewardEmojiR", "confetti", {
+  const { reward: rewardConfettiR } = useReward("rewardR", "confetti", {
     ...rewardConfettiConfig,
     angle: rewardRightAngle,
   });
 
-  const triggerRewards = useCallback(() => {
+  const triggerRewards = () => {
     rewardEmojiR();
     rewardEmojiL();
     rewardConfettiL();
     rewardConfettiR();
-  }, []); // react-rewardsのreward()が更新され続けることによる再レンダリングの無限ループに陥るため、引数にtriggerRewardsを渡さない
+  }; // react-rewardsのreward()が更新され続けることによる再レンダリングの無限ループに陥るため、引数にtriggerRewardsを渡さない
 
   const [animationActive, setAnimationActive] = useState<boolean>(false);
   const feedAnimationProps = useSpring({

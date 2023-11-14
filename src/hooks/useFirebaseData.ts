@@ -29,6 +29,8 @@ export const useFirebaseData = (handleCheerCallback: () => Promise<void>) => {
             fromUserId: change.doc.data().fromUserId,
             toUserId: change.doc.data().toUserId,
           });
+
+          // NOTE: 開発中に大量に紙吹雪が出てしまうのを防ぐため、開発中はコメントアウト推奨
           await handleCheerCallback();
         }
       });

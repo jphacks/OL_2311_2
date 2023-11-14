@@ -1,5 +1,5 @@
 import LogoImage from "./assets/logo.png";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CheersPair from "./components/KanpaiPair";
 import { animated } from "react-spring";
 import { useKanpaiAnimation } from "./hooks/useKanpaiAnimation";
@@ -11,10 +11,10 @@ function App() {
   const [isStarted, setIsStarted] = useState<boolean>(false);
   const { triggerRewards, feedAnimationProps, setAnimationActive } =
     useKanpaiAnimation();
-  const handleKanpaiCallback = useCallback(async () => {
+  const handleKanpaiCallback = async () => {
     triggerRewards();
     await audios.kanpai.play();
-  }, [triggerRewards]);
+  };
   const { fromUser, toUser, count } = useFirebaseData(handleKanpaiCallback);
 
   useEffect(() => {
@@ -29,12 +29,11 @@ function App() {
       {isStarted ? (
         <>
           <div className="fixed -left-20 bottom-20">
-            <span id="rewardEmojiL" />
+            <span id="rewardL" />
           </div>
           <div className="fixed -right-20 bottom-20">
-            <span id="rewardEmojiR" />
+            <span id="rewardR" />
           </div>
-          <button onClick={handleKanpaiCallback}>click</button>
           <div className="flex text-white justify-center items-center flex-col">
             <h1 className="text-[40px] font-semibold">会場の総乾杯数</h1>
             <animated.p className="font-[Chillax] text-[250px] leading-none">
