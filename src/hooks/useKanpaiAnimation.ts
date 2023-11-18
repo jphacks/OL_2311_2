@@ -31,7 +31,7 @@ export const useKanpaiAnimation = () => {
     rewardEmojiL();
     rewardConfettiL();
     rewardConfettiR();
-  }; // react-rewardsのreward()が更新され続けることによる再レンダリングの無限ループに陥るため、引数にtriggerRewardsを渡さない
+  };
 
   const [animationActive, setAnimationActive] = useState<boolean>(false);
   const feedAnimationProps = useSpring({

@@ -31,12 +31,12 @@ const CheersPair: React.FC<CheersPairProps> = ({
     >
       <img
         src={fromUser?.profileImageUrl}
-        className="rounded-full absolute -left-[45%] top-1/2 bottom-1/2 w-[150px] transform -translate-y-[10%]"
+        className="rounded-full absolute left-[10%] top-1/2 bottom-1/2 w-[150px] transform -translate-y-[10%]"
       />
-      <img src={KanpaiImage} />
+      <img src={KanpaiImage} className="opacity-0" />
       <img
         src={toUser?.profileImageUrl}
-        className="rounded-full absolute -right-[45%] top-1/2 bottom-1/2 w-[150px] transform -translate-y-[10%]"
+        className="rounded-full absolute -right-[15%] top-1/2 bottom-1/2 w-[150px] transform -translate-y-[10%]"
       />
     </div>
   );
