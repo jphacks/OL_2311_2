@@ -49,54 +49,6 @@ function App() {
               </animated.p>
               <img src={LogoImage} alt="Kanpai!" />
             </div>
-            {fromUser && toUser && (
-              <div>
-                <animated.div style={feedAnimationProps}>
-                  <CheersPair
-                    fromUser={fromUser}
-                    toUser={toUser}
-                    position={{ top: "-10%", left: "5%" }}
-                    rotate="25deg"
-                  />
-                </animated.div>
-                <animated.div style={feedAnimationProps}>
-                  <CheersPair
-                    fromUser={fromUser}
-                    toUser={toUser}
-                    position={{ top: "5%", right: "5%" }}
-                    rotate="-34deg"
-                    scale={0.9}
-                  />
-                </animated.div>
-                <animated.div style={feedAnimationProps}>
-                  <CheersPair
-                    fromUser={fromUser}
-                    toUser={toUser}
-                    position={{ bottom: "15%", left: "12%" }}
-                    rotate="-8deg"
-                    scale={0.8}
-                  />
-                </animated.div>
-                <animated.div style={feedAnimationProps}>
-                  <CheersPair
-                    fromUser={fromUser}
-                    toUser={toUser}
-                    position={{ bottom: "5%", right: "20%" }}
-                    rotate="30deg"
-                    scale={0.7}
-                  />
-                </animated.div>
-                <animated.div style={feedAnimationProps}>
-                  <CheersPair
-                    fromUser={fromUser}
-                    toUser={toUser}
-                    position={{ bottom: "15%", right: "2%" }}
-                    rotate="-30deg"
-                    scale={0.5}
-                  />
-                </animated.div>
-              </div>
-            )}
           </>
         ) : (
           <div className="flex flex-col gap-4">
@@ -112,6 +64,54 @@ function App() {
           </div>
         )}
       </div>
+      {fromUser && toUser && (
+        <div>
+          <animated.div style={feedAnimationProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ top: "-10%", left: "5%" }}
+              rotate="25deg"
+            />
+          </animated.div>
+          <animated.div style={feedAnimationProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ top: "5%", right: "5%" }}
+              rotate="-34deg"
+              scale={0.9}
+            />
+          </animated.div>
+          <animated.div style={feedAnimationProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ bottom: "15%", left: "12%" }}
+              rotate="-8deg"
+              scale={0.8}
+            />
+          </animated.div>
+          <animated.div style={feedAnimationProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ bottom: "5%", right: "20%" }}
+              rotate="30deg"
+              scale={0.7}
+            />
+          </animated.div>
+          <animated.div style={feedAnimationProps}>
+            <CheersPair
+              fromUser={fromUser}
+              toUser={toUser}
+              position={{ bottom: "15%", right: "2%" }}
+              rotate="-30deg"
+              scale={0.5}
+            />
+          </animated.div>
+        </div>
+      )}
     </div>
   );
 }
